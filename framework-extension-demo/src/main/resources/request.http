@@ -1,0 +1,10 @@
+### 响应失败
+POST /api/request HTTP/1.1
+Host: localhost:8080
+Content-Type: application/json
+Cookie: firsttoken=4091fe9a8255254c55d7f59a4b4425c0
+Cookie: token=a3d6e50f06f542c5de3a4e7413050eea
+
+{
+
+}

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <property scope="context" resource="logback-desensitization-rule.properties"/>
+
+    <conversionRule conversionWord="msg"
+                    converterClass="com.bk.framework.extension.logback.v1.DesensitizationMessageConvert"/>
+    <conversionRule conversionWord="rid" converterClass="com.bk.framework.extension.logback.ClassicConverterExt"/>
+    <property name="CONSOLE_LOG_PATTERN"
+              value="%date{yyyy-MM-dd HH:mm:ss} | %boldYellow(%rid) | %highlight(%-5level) | %boldYellow(%thread) | %boldGreen(%logger) | %msg%n"/>
+    <appender name="stdout" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+            <pattern>${CONSOLE_LOG_PATTERN}</pattern>
+        </encoder>
+    </appender>
+
+    <root level="INFO">
+        <appender-ref ref="stdout"/>
+    </root>
+</configuration>
