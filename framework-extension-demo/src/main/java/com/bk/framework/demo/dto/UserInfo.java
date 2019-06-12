@@ -1,7 +1,6 @@
 package com.bk.framework.demo.dto;
 
 import com.bk.framework.extension.logback.annotation.Desensitization;
-import com.bk.framework.extension.logback.annotation.DesensitizationEnum;
 import lombok.Data;
 
 /**
@@ -12,11 +11,11 @@ import lombok.Data;
  */
 @Data
 public class UserInfo {
-    @Desensitization(type = DesensitizationEnum.NAME)
+    @Desensitization(type = "NAME")
     private String userName;
-    @Desensitization(type = DesensitizationEnum.MOBILE)
+    @Desensitization(type = "MOBILE")
     private String mobile;
-    @Desensitization(type = DesensitizationEnum.EMAIL)
+    @Desensitization(type = "EMAIL")
     private String email ;
     private String sex ;
 }
