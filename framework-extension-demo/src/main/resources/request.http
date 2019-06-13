@@ -1,10 +1,25 @@
-### 响应失败
+### 响应失败 参数校验不通过
 POST /api/request HTTP/1.1
 Host: localhost:8080
 Content-Type: application/json
-Cookie: firsttoken=4091fe9a8255254c55d7f59a4b4425c0
-Cookie: token=a3d6e50f06f542c5de3a4e7413050eea
 
 {
-
 }
+###### 响应成功
+POST /api/request HTTP/1.1
+Host: localhost:8080
+Content-Type: application/json
+
+{
+  "clientCode": "TEST_CLIENT_CODE",
+  "requestId": "12131434546",
+  "requestTime": "1561651321",
+  "signType": "MD5",
+  "method": "testMethod",
+  "sign": "dc2358ea34c93e39f11ebc83cf57aa5b",
+  "requestBody": {
+//    这里面是自己的业务参数
+    "xxx": 1
+  }
+}
+####
