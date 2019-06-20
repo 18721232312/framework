@@ -7,7 +7,6 @@
     <groupId>com.bk.framework</groupId>
     <artifactId>framework</artifactId>
     <packaging>pom</packaging>
-
     <properties>
         <JAVAC_PATH>${env.JAVA_HOME}/bin/javac</JAVAC_PATH>
         <JAVA_VERSION>1.8</JAVA_VERSION>
@@ -17,8 +16,14 @@
     <modules>
         <module>framework-extension</module>
         <module>framework-extension-demo</module>
+        <module>framework-extension-neo4j</module>
     </modules>
-
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>2.1.0.RELEASE</version>
+        <relativePath/>
+    </parent>
     <build>
         <plugins>
             <plugin>

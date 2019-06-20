@@ -1,0 +1,11 @@
+spring:
+  data:
+    neo4j:
+      bolt: bolt://127.0.0.1:7687
+      uri: http://127.0.0.1:7474
+      username: neo4j
+      password: test1234
+server:
+  port: 80
+  servlet:
+    context-path: /

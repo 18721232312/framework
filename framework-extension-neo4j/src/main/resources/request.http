@@ -1,0 +1,27 @@
+######查询空间信息
+GET /space/findSpace?projectCode=1&accessKey=ALBK HTTP/1.1
+Host: localhost
+Content-Type: application/json
+
+#########查询环境列表
+GET /space/env/findEnvList?projectCode=1&accessKey=ALBK HTTP/1.1
+Host: localhost
+Content-Type: application/json
+
+#######查询环境中服务器列表
+GET /space/env/findEnvMachineList?projectCode=1&accessKey=ALBK&id=20 HTTP/1.1
+Host: localhost
+Content-Type: application/json
+
+#######查询服务器上应用的列表
+GET /space/env/findMachineAppList?projectCode=1&accessKey=ALBK&id=24 HTTP/1.1
+Host: localhost
+Content-Type: application/json
+
+########## 查找环境中安装了某些应用的服务器
+GET /space/env/machine/findMachines?projectCode=1&accessKey=ALBK&appType=NGINX&envType=DEV HTTP/1.1
+Host: localhost
+Content-Type: application/json
+
+###
+
