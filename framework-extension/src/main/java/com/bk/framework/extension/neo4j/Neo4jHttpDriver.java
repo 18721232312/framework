@@ -20,10 +20,8 @@ import org.apache.http.util.EntityUtils;
 import org.neo4j.ogm.config.Configuration;
 import org.neo4j.ogm.config.ObjectMapperFactory;
 import org.neo4j.ogm.driver.AbstractConfigurableDriver;
-import org.neo4j.ogm.drivers.http.driver.HttpDriver;
 import org.neo4j.ogm.drivers.http.request.HttpRequest;
 import org.neo4j.ogm.drivers.http.request.HttpRequestException;
-import org.neo4j.ogm.drivers.http.transaction.HttpTransaction;
 import org.neo4j.ogm.exception.CypherException;
 import org.neo4j.ogm.request.DefaultRequest;
 import org.neo4j.ogm.request.OptimisticLockingConfig;
@@ -54,6 +52,10 @@ public final class Neo4jHttpDriver extends AbstractConfigurableDriver {
     private CloseableHttpClient httpClient;
 
     Neo4jHttpDriver() {
+    }
+
+    Neo4jHttpDriver(CloseableHttpClient httpClient) {
+        this.httpClient = httpClient;
     }
 
     @Override
@@ -95,7 +97,7 @@ public final class Neo4jHttpDriver extends AbstractConfigurableDriver {
         if (bookmarks != null && bookmarks.iterator().hasNext()) {
             LOGGER.warn("Passing bookmarks {} to  This is not currently supported.", bookmarks);
         }
-        return new HttpTransaction(transactionManager, new HttpDriver(this.httpClient), newTransactionUrl(type), type);
+        return new Neo4jHttpTransaction(transactionManager, this, newTransactionUrl(type), type);
     }
 
     public CloseableHttpResponse executeHttpRequest(HttpRequestBase request) throws HttpRequestException {
@@ -156,8 +158,8 @@ public final class Neo4jHttpDriver extends AbstractConfigurableDriver {
         if (transactionManager != null) {
             Transaction tx = transactionManager.getCurrentTransaction();
             if (tx != null) {
-                LOGGER.debug("Thread: {}, request url {}", Thread.currentThread().getId(), ((HttpTransaction) tx).url());
-                return ((HttpTransaction) tx).url();
+                LOGGER.debug("Thread: {}, request url {}", Thread.currentThread().getId(), ((Neo4jHttpTransaction) tx).url());
+                return ((Neo4jHttpTransaction) tx).url();
             } else {
                 LOGGER.debug("Thread: {}, No current transaction, using auto-commit", Thread.currentThread().getId());
             }
